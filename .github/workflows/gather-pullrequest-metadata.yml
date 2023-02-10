@@ -1,0 +1,29 @@
+---
+
+name: Gather Pull Request Metadata
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+permissions:
+  contents: read
+
+jobs:
+  gather-metadata:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+
+      - id: Metadata
+        name: Gather Pull Request Metadata
+        uses: redhat-plumbers-in-action/gather-pull-request-metadata@84fcdaa63f7efe848165d94f7c304263b8264b3f
+
+      - name: Upload artifact with gathered metadata
+        uses: actions/upload-artifact@65d862660abb392b8c4a3d1195a2108db131dd05
+        with:
+          name: Pull Request Metadata
+          path: ${{ steps.Metadata.outputs.metadata-file }}
+
+...
