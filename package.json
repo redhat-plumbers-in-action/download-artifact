@@ -1,7 +1,7 @@
 {
-  "name": "typescript-action",
+  "name": "download-artifact",
   "version": "1.0.0",
-  "description": "TypeScript template action",
+  "description": "A GitHub Action to download a single artifact from a workflow run",
   "main": "src/main.ts",
   "scripts": {
     "build": "tsc",
@@ -15,18 +15,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/redhat-plumbers-in-action/typescript-action.git"
+    "url": "git+https://github.com/redhat-plumbers-in-action/download-artifact.git"
   },
   "keywords": [
-    "actions",
-    "node",
-    "setup"
+    "github-action",
+    "artifact-management"
   ],
   "author": "jamacku@redhat.com",
   "license": "MIT",
   "packageManager": "yarn@3.4.1",
   "dependencies": {
     "@actions/core": "1.10.0",
+    "@actions/exec": "^1.1.1",
     "@octokit/rest": "19.0.7",
     "@probot/adapter-github-actions": "3.1.3",
     "class-validator": "^0.14.0"

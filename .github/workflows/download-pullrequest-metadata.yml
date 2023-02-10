@@ -1,0 +1,29 @@
+---
+
+name: Download Pull Request Metadata
+on:
+  workflow_run:
+    workflows: [ Gather Pull Request Metadata ]
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  freezer:
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download Pull Request Metadata artifact
+        uses: ./
+        with:
+          name: Pull Request Metadata
+
+...

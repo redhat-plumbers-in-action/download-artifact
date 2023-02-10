@@ -15,6 +15,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@actions/exec@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@actions/exec@npm:1.1.1"
+  dependencies:
+    "@actions/io": ^1.0.1
+  checksum: d976e66dd51ab03d76a143da8e1406daa1bcdee06046168e6e0bec681c87a12999eefaad7a81cb81f28e4190610f55a58b8458ae4b82cbaaba13200490f4e8c2
+  languageName: node
+  linkType: hard
+
 "@actions/github@npm:5.1.1":
   version: 5.1.1
   resolution: "@actions/github@npm:5.1.1"
@@ -33,6 +42,13 @@ __metadata:
   dependencies:
     tunnel: ^0.0.6
   checksum: 799ec3df91e28a9da91ce6592e94f8b8923ccf6cc21a2f72c7429be5af5273f1625335411adc2a1bb222d56c852d5767214dfa6fa32a6da7e81dba8290e08f17
+  languageName: node
+  linkType: hard
+
+"@actions/io@npm:^1.0.1":
+  version: 1.1.2
+  resolution: "@actions/io@npm:1.1.2"
+  checksum: 3c6583c4557abf6c95e9cfc9b6377045e65ba2c5dd4863f4feedd6be9daf4f6b60e588ab0151d5626b5f8320a37f05b8d44ab5c329b8c19f65be31b0616e1464
   languageName: node
   linkType: hard
 
@@ -2081,6 +2097,32 @@ __metadata:
   checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
   languageName: node
   linkType: hard
+
+"download-artifact@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "download-artifact@workspace:."
+  dependencies:
+    "@actions/core": 1.10.0
+    "@actions/exec": ^1.1.1
+    "@actions/github": 5.1.1
+    "@octokit/rest": 19.0.7
+    "@probot/adapter-github-actions": 3.1.3
+    "@types/node": 18.13.0
+    "@typescript-eslint/eslint-plugin": 5.51.0
+    "@typescript-eslint/parser": 5.51.0
+    "@vercel/ncc": 0.36.1
+    "@vitest/coverage-c8": 0.28.4
+    class-validator: ^0.14.0
+    eslint: 8.33.0
+    eslint-plugin-prettier: 4.2.1
+    js-yaml: 4.1.0
+    nock: 13.3.0
+    prettier: 2.8.4
+    ts-node: 10.9.1
+    typescript: 4.9.5
+    vitest: 0.28.4
+  languageName: unknown
+  linkType: soft
 
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0
@@ -5116,31 +5158,6 @@ __metadata:
   checksum: 2c8e47675d55f8b4e404bcf529abdf5036c537a04c2b20177bcf78c9e3c1da69da3942b1346e6edb09e823228c0ee656ef0e033765ec39a70d496ef601a0c657
   languageName: node
   linkType: hard
-
-"typescript-action@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "typescript-action@workspace:."
-  dependencies:
-    "@actions/core": 1.10.0
-    "@actions/github": 5.1.1
-    "@octokit/rest": 19.0.7
-    "@probot/adapter-github-actions": 3.1.3
-    "@types/node": 18.13.0
-    "@typescript-eslint/eslint-plugin": 5.51.0
-    "@typescript-eslint/parser": 5.51.0
-    "@vercel/ncc": 0.36.1
-    "@vitest/coverage-c8": 0.28.4
-    class-validator: ^0.14.0
-    eslint: 8.33.0
-    eslint-plugin-prettier: 4.2.1
-    js-yaml: 4.1.0
-    nock: 13.3.0
-    prettier: 2.8.4
-    ts-node: 10.9.1
-    typescript: 4.9.5
-    vitest: 0.28.4
-  languageName: unknown
-  linkType: soft
 
 "typescript@npm:4.9.5":
   version: 4.9.5
