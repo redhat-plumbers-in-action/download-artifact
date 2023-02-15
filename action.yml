@@ -1,11 +1,12 @@
 # Hugely inspired by work of @marocchino in https://github.com/marocchino/on_artifact
 ---
 
-name: Download Artifact
-
+name: Download Artifact on workflow_run event
 description: A GitHub Action to download a single artifact from a workflow run.
 
-author: Jan Macků <jamacku@redhat.com>
+branding:
+  icon: arrow-down-circle
+  color: green
 
 inputs:
   name:
