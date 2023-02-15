@@ -85,6 +85,10 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
 
+    permissions:
+      # required for all workflows when deleting artifact
+      actions: write
+
     steps:
       - id: Artifact
         name: Download Artifact
