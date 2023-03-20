@@ -23,7 +23,7 @@
   ],
   "author": "jamacku@redhat.com",
   "license": "MIT",
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@3.5.0",
   "dependencies": {
     "@actions/core": "1.10.0",
     "@actions/exec": "^1.1.1",
