@@ -21,7 +21,13 @@ const action = (probot) => {
         const artifacts = (await context.octokit.rest.actions.listWorkflowRunArtifacts(context.repo({
             run_id: runId,
         }))).data.artifacts;
+        debug(`Looking for artifact '${name}'`);
         const matchArtifact = artifacts.filter(artifact => artifact.name === name)[0];
+        if (!matchArtifact) {
+            throw new Error(`Artifact '${name}' not found`);
+        }
+        debug(`Found artifact '${name}' with id '${matchArtifact.id}'`);
+        debug(`Downloading artifact '${name}'`);
         const download = (await context.octokit.rest.actions.downloadArtifact(context.repo({
             artifact_id: matchArtifact.id,
             archive_format: 'zip',
