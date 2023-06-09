@@ -1,14 +1,19 @@
 // SPDX-License-Identifier: MIT
 
-import run from '@probot/adapter-github-actions';
 import { setFailed } from '@actions/core';
 
-import action from './action';
+import { action } from './action';
 
 try {
-  await run.run(action);
+  const message = await action();
 } catch (error) {
-  error instanceof Error
-    ? setFailed(error.message)
-    : setFailed(error as string);
+  let message: string;
+
+  if (error instanceof Error) {
+    message = error.message;
+  } else {
+    message = JSON.stringify(error);
+  }
+
+  setFailed(message);
 }
