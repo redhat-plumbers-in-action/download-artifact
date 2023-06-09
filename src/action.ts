@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Hugely inspired by work of @marocchino in https://github.com/marocchino/on_artifact
 
-import { readFileSync, readdirSync, writeFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 
 import {
   debug,
@@ -15,8 +15,13 @@ import {
 import { exec } from '@actions/exec';
 import { Octokit } from '@octokit/core';
 import { z } from 'zod';
+import { downloadArtifact, getArtifactDetails } from './lib';
 
-export async function action() {
+export async function action(mock?: {
+  listWorkflowRunArtifactsMock: unknown;
+  downloadArtifactMock: unknown;
+  deleteArtifactMock?: unknown;
+}) {
   const name = getInput('name', { required: true });
   const path = getInput('path') || name;
   const removeArchive = getBooleanInput('remove-archive', {
@@ -41,33 +46,22 @@ export async function action() {
     .min(1)
     .parse(process.env.GITHUB_REPOSITORY?.split('/')[1]);
 
-  const artifacts = (
-    await octokit.request(
-      'GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts',
-      { owner, repo, run_id: runId }
-    )
-  ).data.artifacts;
+  const matchArtifact = await getArtifactDetails(
+    name,
+    { repo, owner, run_id: runId },
+    octokit,
+    mock
+  );
 
-  debug(`Looking for artifact '${name}'`);
-  const matchArtifact = artifacts.filter(artifact => artifact.name === name)[0];
-
-  if (!matchArtifact) {
-    throw new Error(`Artifact '${name}' not found`);
-  }
-  debug(`Found artifact '${name}' with id '${matchArtifact.id}'`);
-
-  debug(`Downloading artifact '${name}'`);
-  const download = (
-    await octokit.request(
-      'GET /repos/{owner}/{repo}/actions/artifacts/{artifact_id}/{archive_format}',
-      { owner, repo, artifact_id: matchArtifact.id, archive_format: 'zip' }
-    )
-  ).data;
-
-  const filePath = `${name}.zip`;
-  writeFileSync(filePath, Buffer.from(download as string));
+  const filePath = await downloadArtifact(
+    name,
+    { repo, owner, artifact_id: matchArtifact.id },
+    octokit,
+    mock
+  );
 
   await exec('unzip', [filePath, '-d', path]);
+
   if (removeArchive) {
     debug(`'remove-archive' input is set to '${removeArchive}'`);
     info(`Removing archive '${filePath}'`);
@@ -97,11 +91,15 @@ export async function action() {
   });
 
   if (deleteArtifact) {
+    const deleteArtifactMock = mock?.deleteArtifactMock
+      ? { request: { fetch: mock.deleteArtifactMock } }
+      : {};
+
     debug(`'delete-artifact' input is set to '${deleteArtifact}'`);
     info(`Deleting artifact '${name}'`);
     await octokit.request(
       'DELETE /repos/{owner}/{repo}/actions/artifacts/{artifact_id}',
-      { owner, repo, artifact_id: matchArtifact.id }
+      { owner, repo, artifact_id: matchArtifact.id, ...deleteArtifactMock }
     );
   }
 }

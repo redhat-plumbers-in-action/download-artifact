@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT
 // Hugely inspired by work of @marocchino in https://github.com/marocchino/on_artifact
-import { readFileSync, readdirSync, writeFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { debug, getBooleanInput, getInput, info, setOutput, isDebug, group, } from '@actions/core';
 import { exec } from '@actions/exec';
 import { Octokit } from '@octokit/core';
 import { z } from 'zod';
-export async function action() {
+import { downloadArtifact, getArtifactDetails } from './lib';
+export async function action(mock) {
     var _a, _b;
     const name = getInput('name', { required: true });
     const path = getInput('path') || name;
@@ -28,17 +29,8 @@ export async function action() {
         .string()
         .min(1)
         .parse((_b = process.env.GITHUB_REPOSITORY) === null || _b === void 0 ? void 0 : _b.split('/')[1]);
-    const artifacts = (await octokit.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', { owner, repo, run_id: runId })).data.artifacts;
-    debug(`Looking for artifact '${name}'`);
-    const matchArtifact = artifacts.filter(artifact => artifact.name === name)[0];
-    if (!matchArtifact) {
-        throw new Error(`Artifact '${name}' not found`);
-    }
-    debug(`Found artifact '${name}' with id '${matchArtifact.id}'`);
-    debug(`Downloading artifact '${name}'`);
-    const download = (await octokit.request('GET /repos/{owner}/{repo}/actions/artifacts/{artifact_id}/{archive_format}', { owner, repo, artifact_id: matchArtifact.id, archive_format: 'zip' })).data;
-    const filePath = `${name}.zip`;
-    writeFileSync(filePath, Buffer.from(download));
+    const matchArtifact = await getArtifactDetails(name, { repo, owner, run_id: runId }, octokit, mock);
+    const filePath = await downloadArtifact(name, { repo, owner, artifact_id: matchArtifact.id }, octokit, mock);
     await exec('unzip', [filePath, '-d', path]);
     if (removeArchive) {
         debug(`'remove-archive' input is set to '${removeArchive}'`);
@@ -62,9 +54,12 @@ export async function action() {
         }
     });
     if (deleteArtifact) {
+        const deleteArtifactMock = (mock === null || mock === void 0 ? void 0 : mock.deleteArtifactMock)
+            ? { request: { fetch: mock.deleteArtifactMock } }
+            : {};
         debug(`'delete-artifact' input is set to '${deleteArtifact}'`);
         info(`Deleting artifact '${name}'`);
-        await octokit.request('DELETE /repos/{owner}/{repo}/actions/artifacts/{artifact_id}', { owner, repo, artifact_id: matchArtifact.id });
+        await octokit.request('DELETE /repos/{owner}/{repo}/actions/artifacts/{artifact_id}', Object.assign({ owner, repo, artifact_id: matchArtifact.id }, deleteArtifactMock));
     }
 }
 //# sourceMappingURL=action.js.map
