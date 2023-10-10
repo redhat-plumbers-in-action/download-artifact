@@ -18,7 +18,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: release-drafter/release-drafter@cfc5540ebc9d65a8731f02032e3d44db5e449fb6
+      - uses: release-drafter/release-drafter@576ba52e425d7702996a1094c4c32c0daca16a41
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
