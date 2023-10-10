@@ -39,7 +39,7 @@ inputs:
 # Outputs are dynamically assigned and their names are inherited from file names of extracted artifact archive.
 
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: node20
+  main: dist/index.js
 
 ...
