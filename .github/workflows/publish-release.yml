@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+        uses: actions/checkout@v4
 
       - name: Update tag
-        uses: Actions-R-Us/actions-tagger@68b8860d45b8d5a78fc2b0b4c7bb19da085b38c6
+        uses: Actions-R-Us/actions-tagger@v2
         with:
           publish_latest_tag: false
           token: ${{ secrets.GITHUB_TOKEN }}
