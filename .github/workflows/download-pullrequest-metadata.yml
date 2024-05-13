@@ -28,5 +28,3 @@ jobs:
         uses: ./
         with:
           name: Pull Request Metadata
-
-...

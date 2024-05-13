@@ -25,5 +25,3 @@ jobs:
         with:
           name: Pull Request Metadata
           path: ${{ steps.Metadata.outputs.metadata-file }}
-
-...
