@@ -55,10 +55,10 @@ jobs:
 
     steps:
       - name: Repository checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: README as Artifact
           path: README.md
@@ -89,7 +89,7 @@ jobs:
     steps:
       - id: Artifact
         name: Download Artifact
-        uses: redhat-plumbers-in-action/download-artifact@main
+        uses: redhat-plumbers-in-action/download-artifact@v1
         with:
           name: README as Artifact
 
