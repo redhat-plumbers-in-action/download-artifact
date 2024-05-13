@@ -34,5 +34,3 @@ jobs:
 
       - name: Prettier
         run: yarn run format-check
-
-...
