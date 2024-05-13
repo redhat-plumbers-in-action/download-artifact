@@ -30,7 +30,7 @@ inputs:
   run-id:
     required: false
     default: ${{ github.event.workflow_run.id }}
-    description: 'set workflow_run id, This defaults to {{ github.event.workflow_run.id }}'
+    description: 'Set workflow_run id, This defaults to {{ github.event.workflow_run.id }}'
   token:
     required: false
     default: ${{ github.token }}
