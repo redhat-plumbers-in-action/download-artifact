@@ -757,14 +757,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/ncc@npm:0.38.1":
-  version: 0.38.1
-  resolution: "@vercel/ncc@npm:0.38.1"
+"@vercel/ncc@npm:0.38.2":
+  version: 0.38.2
+  resolution: "@vercel/ncc@npm:0.38.2"
   dependencies:
     node-gyp: "npm:latest"
   bin:
     ncc: dist/ncc/cli.js
-  checksum: 10/2ed9dff34ba2e7c2ba7113ed075effd023549d5041d355a367f5bf749b20916f68d2adad6737f7a2d03f0d92237f948ce8dfbc9429bdf3febc18d4fa5159d9b4
+  checksum: 10/9a039147e379b7e5fc48e42b4ba1b5bdf4425db6de9de857b4a2bb7391805a7155e35c20d4da2159e09189b0ab62462900fcf09173a5b00886033c874bc47145
   languageName: node
   linkType: hard
 
@@ -1200,7 +1200,7 @@ __metadata:
     "@actions/github": "npm:6.0.0"
     "@octokit/rest": "npm:20.1.1"
     "@types/node": "npm:20.14.11"
-    "@vercel/ncc": "npm:0.38.1"
+    "@vercel/ncc": "npm:0.38.2"
     "@vitest/coverage-v8": "npm:1.6.0"
     prettier: "npm:3.3.3"
     ts-node: "npm:10.9.2"
@@ -2617,11 +2617,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>":
   version: 5.5.3
-  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=b45daf"
+  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/b61b8bb4b4d6a8a00f9d5f931f8c67070eed6ad11feabf4c41744a326987080bfc806a621596c70fbf2e5974eca3ed65bafeeeb22a078071bdfb51d8abd7c013
+  checksum: 10/7cf7acb78a80f749b82842f2ffe01e90e7b3e709a6f4268588e0b7599c41dca1059be217f47778fe1a380bfaf60933021ef20d002c426d4d7745e1b36c11467b
   languageName: node
   linkType: hard
 
