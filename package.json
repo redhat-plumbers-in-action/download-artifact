@@ -7,7 +7,7 @@
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
-    "package": "esbuild --bundle --platform=node --outfile=dist/main.js src/main.ts",
+    "package": "esbuild --bundle --platform=node --outfile=dist/index.js src/main.ts",
     "test": "vitest run --coverage",
     "update-snapshots": "vitest run --update",
     "all": "yarn run build && yarn run format && yarn run package && yarn test"
