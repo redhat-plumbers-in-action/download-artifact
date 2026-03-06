@@ -38,9 +38,9 @@ vi.mock('fs', () => {
 
 // Mock @octokit/core module
 vi.mock('@octokit/core', () => {
-  const Octokit = vi.fn(() => ({
-    request: mocks.request,
-  }));
+  const Octokit = vi.fn(function () {
+    return { request: mocks.request };
+  });
   return { Octokit };
 });
 
