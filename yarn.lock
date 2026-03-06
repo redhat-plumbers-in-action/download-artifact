@@ -1027,12 +1027,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:24.0.3":
-  version: 24.0.3
-  resolution: "@types/node@npm:24.0.3"
+"@types/node@npm:24.12.0":
+  version: 24.12.0
+  resolution: "@types/node@npm:24.12.0"
   dependencies:
-    undici-types: "npm:~7.8.0"
-  checksum: 10/6cce0afa9b0ff7f8eab7cb0339909c1e4ef480b824b8de5adc9cee05dac63ee3d8c7a46e1f95f13ecc94e84608118741f9949527a92fbf3f0e1f7714b37a7b61
+    undici-types: "npm:~7.16.0"
+  checksum: 10/e9dcf8a378af5a636353b6d88a6fae018504bab776410ac6b5411e29afbe601ba9d7957356556fc27268a62814ca4085974f785613482c18f739686efcd49655
   languageName: node
   linkType: hard
 
@@ -1404,7 +1404,7 @@ __metadata:
     "@actions/exec": "npm:1.1.1"
     "@actions/github": "npm:6.0.1"
     "@octokit/rest": "npm:22.0.0"
-    "@types/node": "npm:24.0.3"
+    "@types/node": "npm:24.12.0"
     "@vitest/coverage-v8": "npm:3.2.4"
     esbuild: "npm:^0.25.5"
     prettier: "npm:3.6.0"
@@ -2622,10 +2622,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~7.8.0":
-  version: 7.8.0
-  resolution: "undici-types@npm:7.8.0"
-  checksum: 10/fcff3fbab234f067fbd69e374ee2c198ba74c364ceaf6d93db7ca267e784457b5518cd01d0d2329b075f412574205ea3172a9a675facb49b4c9efb7141cd80b7
+"undici-types@npm:~7.16.0":
+  version: 7.16.0
+  resolution: "undici-types@npm:7.16.0"
+  checksum: 10/db43439f69c2d94cc29f75cbfe9de86df87061d6b0c577ebe9bb3255f49b22c50162a7d7eb413b0458b6510b8ca299ac7cff38c3a29fbd31af9f504bcf7fbc0d
   languageName: node
   linkType: hard
 
